@@ -1,13 +1,14 @@
-import os
 from flask import Flask, url_for, render_template, redirect, request
 from forms import OrderForm
-
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 _INDEX = 0
 
 _SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = _SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////data/order.db'
 
 
 @app.route('/', methods=('GET', 'POST'))
