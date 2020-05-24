@@ -21,4 +21,4 @@ What we plan to achieve is a **simple token-based service** that alerts the pers
 
 ## Prototypes
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a827bd8d-1931-4970-a1bc-4cc02083ff4a/Screenshot_2020-05-24_at_10.40.40_PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a827bd8d-1931-4970-a1bc-4cc02083ff4a/Screenshot_2020-05-24_at_10.40.40_PM.png)
+![image](example.png)
