@@ -14,10 +14,12 @@ db = SQLAlchemy(app)
 class CMaggi(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     count = db.Column(db.Integer, nullable=False)
+    done = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, id, count):
+    def __init__(self, id, count, done=0):
         self.id = id
         self.count = count
+        self.done = done
 
 
 class PMaggi(db.Model):
@@ -43,17 +45,33 @@ db.session.commit()
 
 _INDEX = len(MDosa.query.all()) + 1
 
+cmag_queue = []
+pmag_queue = []
+mdos_queue = []
+
 
 @app.route('/', methods=('GET', 'POST'))
 def contact():
     global _INDEX
     form = OrderForm(request.form)
     if request.method == 'POST':
+
+        cmag = form.cheeseMaggie.data
+        pmag = form.plainMaggie.data
+        mdos = form.masalaDosa.data
+
         _INDEX += 1
         os.environ['_INDEX'] = str(_INDEX)
-        cmaggi = CMaggi(_INDEX, 2)
-        pmaggi = PMaggi(_INDEX, 2)
-        mdosa = MDosa(_INDEX, 2)
+        cmaggi = CMaggi(_INDEX, cmag)
+        pmaggi = PMaggi(_INDEX, pmag)
+        mdosa = MDosa(_INDEX, mdos)
+
+        for i in range(cmag):
+            cmag_queue.append(_INDEX)
+        for i in range(pmag):
+            pmag_queue.append(_INDEX)
+        for i in range(mdos):
+            mdos_queue.append(_INDEX)
 
         db.session.add(cmaggi)
         db.session.add(pmaggi)
@@ -62,6 +80,12 @@ def contact():
         return redirect(url_for('order', id=_INDEX))
     else:
         return render_template('contact.html', form=form)
+
+
+# @app.route('/rcmag')
+# def remove_cmaggie():
+#     if len(cmag_queue) is not 0:
+#         top = cmag_queue.pop()
 
 
 @app.route('/<id>')
