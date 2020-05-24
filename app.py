@@ -1,20 +1,24 @@
-from flask import Flask, url_for, render_template, redirect
+import os
+from flask import Flask, url_for, render_template, redirect, request
 from forms import OrderForm
 
 
-app = Flask(__name__, instance_relative_config=False)
-app.config.from_object('config.Config')
-
+app = Flask(__name__)
 _INDEX = 0
+
+_SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = _SECRET_KEY
 
 
 @app.route('/', methods=('GET', 'POST'))
 def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
+    global _INDEX
+    form = OrderForm()
+    if request.method == 'POST':
         _INDEX += 1
-        return redirect(url_for(order, id=_INDEX))
-    return render_template('index.html', form=form)
+        return redirect(url_for('order', id=_INDEX))
+    else:
+        return render_template('contact.html', form=form)
 
 
 @app.route('/<id>')
