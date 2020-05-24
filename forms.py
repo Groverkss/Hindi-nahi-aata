@@ -5,11 +5,11 @@ from wtforms.validators import DataRequired, Length
 
 class OrderForm(FlaskForm):
     """Contact form."""
-    cheeseMaggie = StringField('cheeseMaggie', [
+    Cheese Maggie = StringField('cheeseMaggie', [
         DataRequired()])
-    plainMaggie = StringField('plainMaggie', [
+    Plain Maggie = StringField('plainMaggie', [
         DataRequired()])
-    masalaDosa = TextField('masalaDosa', [
+    Masala Dosa = TextField('masalaDosa', [
         DataRequired()])
 
     submit = SubmitField('Submit')
