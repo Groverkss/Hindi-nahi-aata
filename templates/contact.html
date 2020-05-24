@@ -3,6 +3,11 @@
 {% block content %}
 <div class="formwrapper">
     <h2 class="title">Place Order Here</h2>
+
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
     <form method="POST" action="/">
         <div class="form-field">{{ form.cheeseMaggie.label }} {{ form.cheeseMaggie }}
             {% if form.cheeseMaggie.errors %}

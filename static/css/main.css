@@ -127,3 +127,9 @@ h3 {
   letter-spacing: -1px;
   color: #999;
 }
+
+.flash {
+  background-color: #FBB0B0;
+  padding: 10px;
+  width: 400px;
+}
