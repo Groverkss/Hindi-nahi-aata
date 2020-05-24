@@ -25,19 +25,23 @@ class CMaggi(db.Model):
 class PMaggi(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     count = db.Column(db.Integer, nullable=False)
+    done = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, id, count):
+    def __init__(self, id, count, done=0):
         self.id = id
         self.count = count
+        self.done = done
 
 
 class MDosa(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     count = db.Column(db.Integer, nullable=False)
+    done = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, id, count):
+    def __init__(self, id, count, done=0):
         self.id = id
         self.count = count
+        self.done = done
 
 
 db.create_all()
@@ -59,6 +63,13 @@ def contact():
         cmag = form.cheeseMaggie.data
         pmag = form.plainMaggie.data
         mdos = form.masalaDosa.data
+
+        if cmag is None:
+            cmag = 0
+        if pmag is None:
+            pmag = 0
+        if mdos is None:
+            mdos = 0
 
         _INDEX += 1
         os.environ['_INDEX'] = str(_INDEX)
@@ -86,30 +97,33 @@ def contact():
 def remove_cmaggie():
     if len(cmag_queue) is not 0:
         top = cmag_queue.pop()
-    curr = CMaggi.query.filter(CMaggi.id=top).first()
-    curr.count -= 1
-    curr.done += 1
-    return render_template('contact.html', form=form)
+        curr = CMaggi.query.filter(CMaggi.id == top).first()
+        curr.count -= 1
+        curr.done += 1
+        db.session.commit()
+    return redirect(url_for('contact'))
 
 
 @app.route('/rpmag')
 def remove_pmaggie():
     if len(pmag_queue) is not 0:
         top = pmag_queue.pop()
-    curr = PMaggi.query.filter(PMaggi.id=top).first()
-    curr.count -= 1
-    curr.done += 1
-    return render_template('contact.html', form=form)
+        curr = PMaggi.query.filter(PMaggi.id == top).first()
+        curr.count -= 1
+        curr.done += 1
+        db.session.commit()
+    return redirect(url_for('contact'))
 
 
 @app.route('/rmdos')
 def remove_mdosa():
     if len(mdos_queue) is not 0:
         top = mdos_queue.pop()
-    curr = MDosa.query.filter(MDosa.id=top).first()
-    curr.count -= 1
-    curr.done += 1
-    return render_template('contact.html', form=form)
+        curr = MDosa.query.filter(MDosa.id == top).first()
+        curr.count -= 1
+        curr.done += 1
+        db.session.commit()
+    return redirect(url_for('contact'))
 
 
 @app.route('/<id>')
@@ -117,6 +131,10 @@ def order(id):
     cmaggi = CMaggi.query.filter(CMaggi.id == id).first()
     pmaggi = PMaggi.query.filter(PMaggi.id == id).first()
     mdosa = MDosa.query.filter(CMaggi.id == id).first()
+
+    done_cmag = cmaggi.done
+    done_pcmag = pmaggi.done
+    done_mdos = mdosa.done
 
     if cmaggi is None:
         cmaggi = 0
@@ -133,7 +151,7 @@ def order(id):
     else:
         mdosa = mdosa.count
 
-    return f'ID --> {id} \n Cheese Maggi --> {cmaggi} \n Plain Maggi --> {pmaggi} \n Masala Dosa --> {mdosa}'
+    return render_template('list.html', id=id, cleft=cmaggi, pleft=pmaggi, mleft=mdosa, cdone=done_cmag, pdone=done_pcmag, mdone=done_mdos)
 
 
 if __name__ == '__main__':
