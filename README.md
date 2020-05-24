@@ -16,3 +16,5 @@ What we plan to achieve is a simple token-based service that alerts the person w
 
 - Simple UI (can be easily modified further) with the help of HTML, CSS and JS
 - Use of Flask as framework and SQLAlchemy for the database.
+
+## Prototypes 
