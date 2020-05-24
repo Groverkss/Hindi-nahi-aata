@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="formwrapper">
+  <h2 class="title">Contact</h2>
+  <form method="POST" action="/">
+    <div class="form-field">{{ form.cheeseMaggie.label }} {{ form.cheeseMaggie }}
+      {% if form.cheeseMaggie.errors %}
+      <ul class="errors">
+        {% for error in form.cheeseMaggie.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="form-field">{{ form.plainMaggie.label }} {{ form.plainMaggie }}
+      {% if form.plainMaggie.errors %}
+      <ul class="errors">
+        {% for error in form.plainMaggie.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="form-field">{{ form.masalaDosa.label }} {{ form.masalaDosa }}
+      {% if form.masalaDosa.errors %}
+      <ul class="errors">
+        {% for error in form.masalaDosa.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {{ form.submit }}
+  </form>
+</div>
+{% endblock %}
