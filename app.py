@@ -82,10 +82,34 @@ def contact():
         return render_template('contact.html', form=form)
 
 
-# @app.route('/rcmag')
-# def remove_cmaggie():
-#     if len(cmag_queue) is not 0:
-#         top = cmag_queue.pop()
+@app.route('/rcmag')
+def remove_cmaggie():
+    if len(cmag_queue) is not 0:
+        top = cmag_queue.pop()
+    curr = CMaggi.query.filter(CMaggi.id=top).first()
+    curr.count -= 1
+    curr.done += 1
+    return render_template('contact.html', form=form)
+
+
+@app.route('/rpmag')
+def remove_pmaggie():
+    if len(pmag_queue) is not 0:
+        top = pmag_queue.pop()
+    curr = PMaggi.query.filter(PMaggi.id=top).first()
+    curr.count -= 1
+    curr.done += 1
+    return render_template('contact.html', form=form)
+
+
+@app.route('/rmdos')
+def remove_mdosa():
+    if len(mdos_queue) is not 0:
+        top = mdos_queue.pop()
+    curr = MDosa.query.filter(MDosa.id=top).first()
+    curr.count -= 1
+    curr.done += 1
+    return render_template('contact.html', form=form)
 
 
 @app.route('/<id>')
