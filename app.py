@@ -42,14 +42,10 @@ app.config['SECRET_KEY'] = _SECRET_KEY
 @app.route('/', methods=('GET', 'POST'))
 def contact():
     global _INDEX
-    form = OrderForm()
+    form = OrderForm(request.form)
     if request.method == 'POST':
-        if form.validate() == False:
-            flash('')
-            return render_template('contact.html', form=form)
-        else:
-            _INDEX += 1
-            return redirect(url_for('order', id=_INDEX))
+        _INDEX += 1
+        return redirect(url_for('order', id=_INDEX))
     else:
         return render_template('contact.html', form=form)
 
