@@ -10,13 +10,11 @@ Here, we have created an app that takes your **order** for BBC Canteen and yield
 
 Instead of having a chaotic situation, this app permits the customers to order food in a easy and sophisticated way and helps in maintaining a clean record of services and items to be delivered for the admin.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4cb06939-6d24-4fe1-bd67-a8827b7bb8fd/check.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4cb06939-6d24-4fe1-bd67-a8827b7bb8fd/check.jpg)
+![image](check.jpg)
 
 The above provides the idea regarding the basic implementation of the supposed web-app. It is quite intuitive for the purpose of placing orders and the result of such orders is the formation of an extensive database.
 
 **Further build-ups can be easily implemented to make the front-end look far more attractive like the Login Page prototype provided under the Prototypes section.**
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/92d3bb2e-0f14-41ef-b547-bdc9059940ad/Unknown.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/92d3bb2e-0f14-41ef-b547-bdc9059940ad/Unknown.jpg)
 
 ## Why to use this app?
 
@@ -43,24 +41,16 @@ We have tried our best to provide a foolproof basic solution. It lacks some inte
 
 ## Prototypes
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/131c66b4-cf5a-4832-832d-c0ad880e39d5/Screenshot_2020-05-25_at_12.59.21_AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/131c66b4-cf5a-4832-832d-c0ad880e39d5/Screenshot_2020-05-25_at_12.59.21_AM.png)
+![image](wub.png)
 
 ## Major Implementation
 
 - Use of Flask as framework and SQLAlchemy for the database
 
-    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08917812-6b59-4311-b6cf-87acb310dadd/Screenshot_2020-05-25_at_12.27.09_AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08917812-6b59-4311-b6cf-87acb310dadd/Screenshot_2020-05-25_at_12.27.09_AM.png)
-
 - **Simple UI** (can be easily modified further) with the help of HTML, CSS and JS
-
-    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4e29f67-44e6-4373-b7af-b77282ae9ee2/Screenshot_2020-05-25_at_12.24.17_AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4e29f67-44e6-4373-b7af-b77282ae9ee2/Screenshot_2020-05-25_at_12.24.17_AM.png)
 
 ## Associated Implementations
 
 - Codebase for Android and iOS implementations of the web-page
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7758cf86-d7ac-42fc-bfcd-f2ab076462fb/Screenshot_2020-05-25_at_12.24.57_AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7758cf86-d7ac-42fc-bfcd-f2ab076462fb/Screenshot_2020-05-25_at_12.24.57_AM.png)
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1784f6bd-183e-40f8-b866-bb4b8aa01c46/Screenshot_2020-05-25_at_12.25.29_AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1784f6bd-183e-40f8-b866-bb4b8aa01c46/Screenshot_2020-05-25_at_12.25.29_AM.png)
 
 - Some **clean templates has been provided for a many unimplemented applications which are meant to express the potential of the app, given time**
