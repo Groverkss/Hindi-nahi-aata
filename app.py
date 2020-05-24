@@ -1,19 +1,20 @@
-# from flask import Flask
 from flask import Flask, url_for, render_template, redirect
 from forms import OrderForm
 
 
-app = Flask(__name__,instance_relative_config=False)
+app = Flask(__name__, instance_relative_config=False)
 app.config.from_object('config.Config')
+
+_INDEX = 0
 
 
 @app.route('/', methods=('GET', 'POST'))
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
-        return redirect(url_for('qrcode'))
+        _INDEX += 1
+        return redirect(url_for(order, id=_INDEX))
     return render_template('index.html', form=form)
-
 
 
 @app.route('/<id>')
